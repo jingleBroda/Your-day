@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="add_task_button_title">Добавить задачу</string>
+    <string name="day_string">День</string>
+    <string name="week_string">Неделя</string>
+</resources>
