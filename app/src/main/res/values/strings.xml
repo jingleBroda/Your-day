@@ -6,4 +6,8 @@
     <string name="day_string">Day</string>
     <string name="week_string">Week</string>
     <string name="numb_test_string" translatable="false">1</string>
+    <string name="time_string">Time:</string>
+    <string name="time_example_string" translatable="false">10:15</string>
+    <string name="task_example_name">Go to Lenta</string>
+    <string name="empty_task_warning_string">You have no plans on this day. You can relax!</string>
 </resources>

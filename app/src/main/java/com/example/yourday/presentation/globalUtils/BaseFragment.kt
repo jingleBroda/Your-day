@@ -1,4 +1,4 @@
-package com.example.yourday.presentation.fragment
+package com.example.yourday.presentation.globalUtils
 
 import androidx.annotation.LayoutRes
 import androidx.fragment.app.Fragment
