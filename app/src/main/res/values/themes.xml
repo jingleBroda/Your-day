@@ -1,13 +1,3 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme.   style="@style/CustomTextView"  -->
-    <style name="Base.Theme.YourDay" parent="Theme.Material3.DayNight.NoActionBar">
-        <item name="colorPrimary">@color/colorPrimaryVariant</item>
-        <item name="fontPath">@font/gardens_cm_regular</item>
-    </style>
-
+<resources>
     <style name="Theme.YourDay" parent="Base.Theme.YourDay" />
-    
-    <style name="CustomTextView" parent="Widget.AppCompat.TextView">
-        <item name="fontFamily">@font/gardens_cm_regular </item>
-    </style>
 </resources>

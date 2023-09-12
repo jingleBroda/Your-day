@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="add_task_button_title">Добавить задачу</string>
+    <string name="day_string">День</string>
+    <string name="week_string">Неделя</string>
+    <string name="time_string">Время:</string>
+    <string name="task_example_name">Сдохить в Ленту</string>
+    <string name="empty_task_warning_string">В данный день у вас нет планов. Можете расслабиться!</string>
+    <string name="task_number_string">Количество задач: %1$d</string>
+    <string-array name="day_week_name">
+        <item>ПН</item>
+        <item>ВТ</item>
+        <item>СР</item>
+        <item>ЧТ</item>
+        <item>ПТ</item>
+        <item>СБ</item>
+        <item>ВС</item>
+    </string-array>
+</resources>

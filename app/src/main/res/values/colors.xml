@@ -1,10 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
-    <color name="colorPrimaryVariant">#22B6C3</color>
-    <color name="grey">#B7B8B2</color>
-    <color name="active_day">#FA8F87</color>
-    <color name="color_task_background_color">#FFFFFFFF</color>
-    <color name="relax_ic_color">#B7B8B2</color>
-</resources>
+<resources/>

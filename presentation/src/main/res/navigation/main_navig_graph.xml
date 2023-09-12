@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_navig_graph"
+    app:startDestination="@id/mainMenuFragment">
+
+    <fragment
+        android:id="@+id/mainMenuFragment"
+        android:name="com.example.presentation.main.fragment.mainFragment.MainMenuFragment"
+        android:label="fragment_main_menu"
+        tools:layout="@layout/fragment_main_menu" >
+        <action
+            android:id="@+id/action_mainMenuFragment_to_selectedDayFragment"
+            app:destination="@id/selectedDayFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/selectedDayFragment"
+        android:name="com.example.presentation.main.fragment.SelectedDayFragment"
+        android:label="fragment_selected_day"
+        tools:layout="@layout/fragment_selected_day" />
+</navigation>
