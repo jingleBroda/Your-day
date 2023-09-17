@@ -15,7 +15,19 @@ class TaskDayViewHolder(
     override fun bind(info: TaskDay) {
         with(item){
             taskName.text = info.name
-            timeValue.text = info.time
+            run{
+                var timeString = if(info.time.hour<10){
+                    "0${info.time.hour}"
+                } else{
+                    "${info.time.hour}"
+                }
+                timeString = if(info.time.minute<10){
+                    timeString+":"+"0${info.time.minute}"
+                } else{
+                    timeString+":"+"${info.time.minute}"
+                }
+                timeValue.text = timeString
+            }
             initTaskComplete(info.complete)
 
             //TODO() taskSticker

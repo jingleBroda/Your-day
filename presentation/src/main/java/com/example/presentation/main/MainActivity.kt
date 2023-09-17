@@ -20,7 +20,13 @@ class MainActivity : AppCompatActivity(), Navigator {
             R.id.FragmentLayout
         ) as NavHostFragment
         navController = navHost.navController
-        //NavigationUI.setupActionBarWithNavController(this,navController)
+
+        if (savedInstanceState != null) {
+            val fragment = supportFragmentManager.findFragmentByTag("createTask")
+            if (fragment != null) {
+                supportFragmentManager.beginTransaction().remove(fragment).commit()
+            }
+        }
     }
 
     override fun next(fragment: Fragment, arg: Bundle?) {

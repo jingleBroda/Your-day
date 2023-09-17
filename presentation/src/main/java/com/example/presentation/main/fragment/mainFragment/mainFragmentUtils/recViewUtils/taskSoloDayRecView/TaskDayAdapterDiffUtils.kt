@@ -12,11 +12,11 @@ class TaskDayAdapterDiffUtils(
     override fun getNewListSize(): Int = newList.size
 
     override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean =
-        oldList[oldItemPosition].serialNumberInList == newList[newItemPosition].serialNumberInList
+        oldList[oldItemPosition].id == newList[newItemPosition].id
 
 
     override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean = when{
-        oldList[oldItemPosition].serialNumberInList != newList[newItemPosition].serialNumberInList ->{
+        oldList[oldItemPosition].id != newList[newItemPosition].id ->{
             false
         }
 

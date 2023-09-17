@@ -24,11 +24,14 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_17 //JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_17 //JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+        //sourceCompatibility JavaVersion.VERSION_17 //JavaVersion.VERSION_1_8
+        //targetCompatibility JavaVersion.VERSION_17 //JavaVersion.VERSION_1_8
     }
     kotlinOptions {
-        jvmTarget = '17'//'1.8'
+        //jvmTarget = '17'//'1.8'
+        jvmTarget = '1.8'
     }
 
     buildFeatures{
@@ -39,7 +42,7 @@ android {
 dependencies {
     def navigation_version = "2.5.3"
 
-    implementation 'androidx.core:core-ktx:1.8.0'
+    implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.5.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
@@ -52,19 +55,6 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-extensions:2.2.0"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1"
 
-    //Dagger2
-    implementation 'com.google.dagger:dagger:2.38.1'
-    kapt 'com.google.dagger:dagger-compiler:2.38.1'
-    //Dagger2 androidInject
-    implementation 'com.google.dagger:dagger-android:2.38.1'
-    implementation 'com.google.dagger:dagger-android-support:2.38.1'
-    kapt 'com.google.dagger:dagger-android-processor:2.38.1'
-
-    //Room
-    implementation "androidx.room:room-ktx:2.5.2"
-    implementation "androidx.room:room-runtime:2.5.2"
-    kapt "androidx.room:room-compiler:2.5.2"
-
     //Coroutines
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.1"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.1"
@@ -73,6 +63,14 @@ dependencies {
     // Jetpack Navigation
     implementation "androidx.navigation:navigation-fragment-ktx:$navigation_version"
     implementation "androidx.navigation:navigation-ui-ktx:$navigation_version"
+
+    //Dagger2
+    implementation 'com.google.dagger:dagger:2.48'
+    kapt 'com.google.dagger:dagger-compiler:2.48'
+    //Dagger2 Android Support
+    implementation 'com.google.dagger:dagger-android:2.48'
+    implementation 'com.google.dagger:dagger-android-support:2.48' // if you use the support libraries
+    annotationProcessor 'com.google.dagger:dagger-android-processor:2.48'
 
     //WorkManager
     implementation "androidx.work:work-runtime-ktx:2.8.1"

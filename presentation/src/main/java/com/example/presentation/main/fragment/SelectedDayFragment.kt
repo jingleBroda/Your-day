@@ -38,7 +38,6 @@ class SelectedDayFragment : Fragment() {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_selected_day, container, false)
     }
-
     companion object {
         /**
          * Use this factory method to create a new instance of

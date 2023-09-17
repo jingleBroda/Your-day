@@ -7,8 +7,8 @@ import java.util.Calendar
 
 class DaySelectionHelper(
     private val selector: DaySelectionLayoutBinding,
-    private val nextWeekClick:(()->Unit)? = null,
-    private val previousWeekClick:(()->Unit)? = null,
+    private val nextWeekClick:((intervalDay:List<String>)->Unit)? = null,
+    private val previousWeekClick:((intervalDay:List<String>)->Unit)? = null,
     private val dayOnClick:((day:String)->Unit)? = null,
     ) {
     private val listDay = listOf(
@@ -28,8 +28,7 @@ class DaySelectionHelper(
     private val dateList = mutableListOf<String>()
 
     init{
-        initActualDay()
-        initTodayDate()
+        initActualAndTodayDay()
         initCalendar()
     }
 
@@ -77,18 +76,18 @@ class DaySelectionHelper(
 
             if(!findActualDay) paintDefaultDay(activeListItem!!)
 
-            //клик по обновлению недели
+            //кнопки перехода на новую неделю
             previousWeek.setOnClickListener{
                 initCalendar(false,
                     BackOrNextWeek.BACK
                 )
-                previousWeekClick?.invoke()
+                previousWeekClick?.invoke(dateList)
             }
             nextWeek.setOnClickListener{
                 initCalendar(false,
                     BackOrNextWeek.NEXT
                 )
-                nextWeekClick?.invoke()
+                nextWeekClick?.invoke(dateList)
             }
         }
     }
@@ -118,17 +117,11 @@ class DaySelectionHelper(
         calendar.add(Calendar.DAY_OF_YEAR, -1)
     }
 
-    private fun initActualDay(){
+    private fun initActualAndTodayDay(){
         val day = calendar.get(Calendar.DAY_OF_MONTH)
         val month = if(calendar.get(Calendar.MONTH) != 12) calendar.get(Calendar.MONTH) else 0
         val years = calendar.get(Calendar.YEAR)
         actualDay = "$day.${month+1}.$years"
-    }
-
-    private fun initTodayDate(){
-        val day = calendar.get(Calendar.DAY_OF_MONTH)
-        val month = if(calendar.get(Calendar.MONTH) != 12) calendar.get(Calendar.MONTH) else 0
-        val years = calendar.get(Calendar.YEAR)
         todayDate = "$day.${month+1}.$years"
     }
 
@@ -164,8 +157,9 @@ class DaySelectionHelper(
     }
 
     fun getToday():String = todayDate
-    fun getActualDay():String = actualDay
     fun getDayRange():List<String> = dateList
+
+    fun getActiveDay():String = actualDay
 
     fun saveInstanceState(){}
 

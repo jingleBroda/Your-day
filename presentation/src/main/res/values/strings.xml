@@ -9,7 +9,7 @@
     <string name="time_string">Time:</string>
     <string name="time_example_string" translatable="false">10:15</string>
     <string name="task_example_name">Go to Lenta</string>
-    <string name="empty_task_warning_string">You have no plans on this day. You can relax!</string>
+    <string name="empty_task_warning_string">There are no scheduled tasks here. You can rest!</string>
     <string name="time_interval_example_string" translatable="false">%1$s - %2$s</string>
     <string name="task_number_string">Number of task: %1$d</string><!-- 1.1.1970 - 7.1.1970 -->
     <string-array name="day_week_name">
@@ -21,4 +21,8 @@
         <item>SA</item>
         <item>SU</item>
     </string-array>
+    <string name="name_task">Name Task</string>
+    <string name="reminder_time_string">Reminder time</string>
+    <string name="sticker_name_string">Sticker:</string>
+    <string name="day_task">Day format: 1.1.1970</string>
 </resources>

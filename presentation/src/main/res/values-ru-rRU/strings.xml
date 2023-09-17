@@ -5,7 +5,7 @@
     <string name="week_string">Неделя</string>
     <string name="time_string">Время:</string>
     <string name="task_example_name">Сдохить в Ленту</string>
-    <string name="empty_task_warning_string">В данный день у вас нет планов. Можете расслабиться!</string>
+    <string name="empty_task_warning_string">Здесь нет запланированных задач. Можете отдохнуть!</string>
     <string name="task_number_string">Количество задач: %1$d</string>
     <string-array name="day_week_name">
         <item>ПН</item>
@@ -16,4 +16,8 @@
         <item>СБ</item>
         <item>ВС</item>
     </string-array>
+    <string name="name_task">Имя задачи</string>
+    <string name="reminder_time_string">Время напоминания</string>
+    <string name="sticker_name_string">Стикер:</string>
+    <string name="day_task">День вида: 1.1.1970</string>
 </resources>
