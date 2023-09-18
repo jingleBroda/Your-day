@@ -20,4 +20,7 @@
     <string name="reminder_time_string">Время напоминания</string>
     <string name="sticker_name_string">Стикер:</string>
     <string name="day_task">День вида: 1.1.1970</string>
+    <string name="delete_space_error_string">Удалите пробел в начале имени!</string>
+    <string name="empty_name_task_error_string">Поле имени не должно быть пустым!</string>
+    <string name="duplicate_task_error">Ошибка! На указанное время уже есть задача!</string>
 </resources>

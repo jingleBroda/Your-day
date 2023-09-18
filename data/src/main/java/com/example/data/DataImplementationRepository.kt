@@ -25,5 +25,10 @@ class DataImplementationRepository @Inject constructor(
         return result
     }
 
+    override suspend fun getDayTask(day: String): List<TaskDay> =
+        dao.getWeekTask(day).map { taskDb->
+            taskDb.toTaskDay()
+        }
+
     override suspend fun deleteAllTask() = dao.deleteAllTask()
 }

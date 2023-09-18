@@ -3,6 +3,7 @@ package com.example.yourday.di.daggerModule.nestedDomainModules
 import com.example.domain.dataAbstract.DomainRepository
 import com.example.domain.dataAbstract.useCase.CreateTaskUseCase
 import com.example.domain.dataAbstract.useCase.DeleteAllTaskUseCase
+import com.example.domain.dataAbstract.useCase.GetDayTaskUseCase
 import com.example.domain.dataAbstract.useCase.GetWeekTaskUseCase
 import dagger.Module
 import dagger.Provides
@@ -20,4 +21,8 @@ class UseCasesModule {
     @Provides
     fun provideDeleteAllTaskUseCase(repository:DomainRepository): DeleteAllTaskUseCase =
         DeleteAllTaskUseCase(repository)
+
+    @Provides
+    fun provideGetDayTaskUseCase(repository:DomainRepository): GetDayTaskUseCase =
+        GetDayTaskUseCase(repository)
 }
