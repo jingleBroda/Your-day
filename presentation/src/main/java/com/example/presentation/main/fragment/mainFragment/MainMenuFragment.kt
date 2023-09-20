@@ -205,14 +205,18 @@ class MainMenuFragment : BaseFragment(R.layout.fragment_main_menu), View.OnClick
             Log.d("testCreateTask", daySelectionHelper.getActiveDay())
             if(viewModel.weekTask.containsKey(newTask.day)){
                 viewModel.addTaskInCreateDialog(newTask)
+
+                updateDayWeekAdapter()
+                if(daySelectionHelper.getActiveDay() == newTask.day){
+                    taskDayAdapter.addOneTask(newTask)
+                }
+
                 if(!switchButtonMode){
-                    updateDayWeekAdapter()
                     binding.taskDayRecView.visibility = View.VISIBLE
                     binding.emptyTaskWarning.root.visibility = View.INVISIBLE
                 }
                 else{
                     if(daySelectionHelper.getActiveDay() == newTask.day){
-                        taskDayAdapter.addOneTask(newTask)
                         binding.taskDayRecView.visibility = View.VISIBLE
                         binding.emptyTaskWarning.root.visibility = View.INVISIBLE
                     }

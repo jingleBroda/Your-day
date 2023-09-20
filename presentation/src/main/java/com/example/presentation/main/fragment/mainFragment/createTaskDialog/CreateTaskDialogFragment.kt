@@ -19,8 +19,10 @@ import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class CreateTaskDialogFragment(
-    private val putTaskDay:(TaskDay)->Unit
+    private val putTaskDay:((TaskDay)->Unit)?
 ):DaggerDialogFragment(), View.OnClickListener {
+    constructor():this(null)
+
     private lateinit var binding:CreateTaskLayoutBinding
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
@@ -30,6 +32,7 @@ class CreateTaskDialogFragment(
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        if(putTaskDay == null) dismiss()
         showsDialog = true
     }
 
@@ -80,7 +83,7 @@ class CreateTaskDialogFragment(
                             viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
                                 viewModel.createTask(createTask)
                                 withContext(Dispatchers.Main){
-                                    putTaskDay.invoke(createTask)
+                                    putTaskDay!!.invoke(createTask)
                                     dismiss()
                                 }
                             }
