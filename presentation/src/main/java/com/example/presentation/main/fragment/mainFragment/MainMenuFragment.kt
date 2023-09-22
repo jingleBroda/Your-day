@@ -1,5 +1,9 @@
 package com.example.presentation.main.fragment.mainFragment
 
+import android.app.AlarmManager
+import android.app.PendingIntent
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -8,8 +12,10 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.domain.presentationModel.DayWeek
+import com.example.domain.presentationModel.TaskDay
 import com.example.presentation.R
 import com.example.presentation.databinding.FragmentMainMenuBinding
+import com.example.presentation.main.alarm.TaskNotifyReceiver
 import com.example.presentation.main.fragment.mainFragment.createTaskDialog.CreateTaskDialogFragment
 import com.example.presentation.main.fragment.mainFragment.mainFragmentUtils.DaySelectionHelper
 import com.example.presentation.main.fragment.mainFragment.mainFragmentUtils.recViewUtils.dayWeekRecView.DayWeekAdapter
@@ -20,6 +26,7 @@ import com.example.presentation.main.globalUtils.ViewModelFactory
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.util.Calendar
 import javax.inject.Inject
 
 class MainMenuFragment : BaseFragment(R.layout.fragment_main_menu), View.OnClickListener {
@@ -29,6 +36,7 @@ class MainMenuFragment : BaseFragment(R.layout.fragment_main_menu), View.OnClick
     private lateinit var taskDayAdapter: TaskDayAdapter
     private var dayWeekDataEmpty = true
     private lateinit var dayWeekAdapter: DayWeekAdapter
+    private var alarmManager:AlarmManager? = null
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
     private val viewModel by viewModels<MainMenuViewModel> {
@@ -37,6 +45,8 @@ class MainMenuFragment : BaseFragment(R.layout.fragment_main_menu), View.OnClick
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding = FragmentMainMenuBinding.bind(view)
+        alarmManager = requireActivity().getSystemService(Context.ALARM_SERVICE) as AlarmManager
+
         with(binding){
             run{
                 val dayOnClick:(String)->Unit = { selectedDay->
@@ -222,8 +232,58 @@ class MainMenuFragment : BaseFragment(R.layout.fragment_main_menu), View.OnClick
                     }
                 }
             }
+            notifyTodayTask(newTask)
         }
         dialog.show(parentFragmentManager, "createTask")
+    }
+
+    private fun notifyTodayTask(newTask: TaskDay){
+        val calendar = Calendar.getInstance()
+        calendar.set(Calendar.HOUR_OF_DAY, newTask.time.hour)
+        calendar.set(Calendar.MINUTE, newTask.time.minute)
+        calendar.set(Calendar.SECOND, 0)
+        if(
+            (Calendar.getInstance().timeInMillis < calendar.timeInMillis)&&
+            (daySelectionHelper.getToday() == newTask.day)
+        ){
+            val massageHourNotify =
+                if(newTask.time.hour < 10) "0${newTask.time.hour}" else "${newTask.time.hour}"
+            val massageMinNotify =
+                if(newTask.time.minute < 10) "0${newTask.time.minute}" else "${newTask.time.minute}"
+            val alarmIntent = Intent(context, TaskNotifyReceiver::class.java).let { intent->
+                intent.putExtra(
+                    TaskNotifyReceiver.keyTaskDayMessage,
+                    "${newTask.name} ${massageHourNotify}:${massageMinNotify}"
+                )
+
+                //формируем requestCode
+                var requestCodeString = ""
+                run{
+                    var dotCount = 0
+                    newTask.day.forEach {
+                        if(it != '.'){
+                            if(dotCount != 2) requestCodeString+=it
+                        }
+                        else{
+                            dotCount++
+                        }
+                    }
+                }
+                requestCodeString += newTask.time.hour.toString() + newTask.time.minute.toString()
+                PendingIntent.getBroadcast(
+                    context,
+                    requestCodeString.toInt(),
+                    intent,
+                    PendingIntent.FLAG_IMMUTABLE
+                )
+            }
+
+            alarmManager?.setExact(
+                AlarmManager.RTC_WAKEUP,
+                calendar.timeInMillis,
+                alarmIntent
+            )
+        }
     }
 
     override fun onClick(v: View) {

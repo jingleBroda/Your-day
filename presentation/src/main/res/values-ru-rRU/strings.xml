@@ -23,4 +23,5 @@
     <string name="delete_space_error_string">Удалите пробел в начале имени!</string>
     <string name="empty_name_task_error_string">Поле имени не должно быть пустым!</string>
     <string name="duplicate_task_error">Ошибка! На указанное время уже есть задача!</string>
+    <string name="notify_title_string">Время выполнять задачу!</string>
 </resources>

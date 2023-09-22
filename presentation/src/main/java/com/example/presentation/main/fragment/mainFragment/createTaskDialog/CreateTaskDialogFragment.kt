@@ -107,7 +107,7 @@ class CreateTaskDialogFragment(
         }
     }
 
-    //Формальная проверка введенных данных. Полностью учитывать все ошибки ввода тут не хочется, поэтому пусть будет хоть так.
+    //Формальная проверка введенных данных. Полностью учитывать все ошибки ввода тут не хочу, поэтому пусть будет хоть так.
     private fun checkData():VerifiedData?{
         with(binding){
             val verifiedName = nameTaskInTextInputLayout.text.toString()
