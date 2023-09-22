@@ -17,4 +17,7 @@ interface YourDayDao {
 
     @Query("DELETE FROM TaskDayEntity")
     suspend fun deleteAllTask()
+
+    @Query("UPDATE TaskDayEntity SET complete = :completeStatus WHERE day = :day AND name = :name  ")
+    suspend fun updateCompleteStatusTask(day:String, name:String, completeStatus:Boolean)
 }

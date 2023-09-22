@@ -30,5 +30,11 @@ class DataImplementationRepository @Inject constructor(
             taskDb.toTaskDay()
         }
 
+    override suspend fun updateCompleteStatusTask(
+        day: String,
+        name: String,
+        completeStatus: Boolean
+    ) = dao.updateCompleteStatusTask(day, name, completeStatus)
+
     override suspend fun deleteAllTask() = dao.deleteAllTask()
 }

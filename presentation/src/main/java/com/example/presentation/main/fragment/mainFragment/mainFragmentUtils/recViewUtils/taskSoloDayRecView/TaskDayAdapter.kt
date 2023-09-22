@@ -1,16 +1,18 @@
 package com.example.presentation.main.fragment.mainFragment.mainFragmentUtils.recViewUtils.taskSoloDayRecView
 
-import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import com.example.domain.presentationModel.TaskDay
+import com.example.presentation.R
 import com.example.presentation.databinding.DayTaskLayoutBinding
 import com.example.presentation.main.globalUtils.YourDayRecyclerAdapter
 
 class TaskDayAdapter(
-    private var listTaskDay:List<TaskDay>
-): YourDayRecyclerAdapter<TaskDayViewHolder, TaskDay>(listTaskDay) {
+    private var listTaskDay:List<TaskDay>,
+    private val insideOnClickListener:View.OnClickListener
+): YourDayRecyclerAdapter<TaskDayViewHolder, TaskDay>(listTaskDay), View.OnClickListener {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskDayViewHolder =
         TaskDayViewHolder(DayTaskLayoutBinding.inflate(LayoutInflater.from(parent.context)))
@@ -18,7 +20,7 @@ class TaskDayAdapter(
     override fun getItemCount(): Int = listTaskDay.size
 
     override fun onBindViewHolder(holder: TaskDayViewHolder, position: Int) =
-        holder.bind(listTaskDay[position])
+        holder.bind(listTaskDay[position], this)
 
     override fun update(newList: List<TaskDay>) {
         val sortedNewList = newList.sortedBy {
@@ -43,4 +45,9 @@ class TaskDayAdapter(
     }
 
     fun listTaskDayIsEmpty() = listTaskDay.isEmpty()
+    override fun onClick(v: View) {
+        when(v.id){
+            R.id.taskComplete-> insideOnClickListener.onClick(v)
+        }
+    }
 }

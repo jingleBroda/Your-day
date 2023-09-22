@@ -5,6 +5,7 @@ import com.example.domain.dataAbstract.useCase.CreateTaskUseCase
 import com.example.domain.dataAbstract.useCase.DeleteAllTaskUseCase
 import com.example.domain.dataAbstract.useCase.GetDayTaskUseCase
 import com.example.domain.dataAbstract.useCase.GetWeekTaskUseCase
+import com.example.domain.dataAbstract.useCase.UpdateCompleteStatusTaskUseCase
 import dagger.Module
 import dagger.Provides
 
@@ -25,4 +26,8 @@ class UseCasesModule {
     @Provides
     fun provideGetDayTaskUseCase(repository:DomainRepository): GetDayTaskUseCase =
         GetDayTaskUseCase(repository)
+
+    @Provides
+    fun provideUpdateCompleteStatusTaskUseCase(repository:DomainRepository): UpdateCompleteStatusTaskUseCase =
+        UpdateCompleteStatusTaskUseCase(repository)
 }

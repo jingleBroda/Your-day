@@ -11,9 +11,14 @@ class TaskDayViewHolder(
     private val item: DayTaskLayoutBinding
 ): YourDayViewHolder<TaskDay>(item.root), View.OnClickListener {
     private var prTaskCompleteClick = false
+    private lateinit var task:TaskDay
+    private var localAdapterOnClickListener:View.OnClickListener? = null
 
-    override fun bind(info: TaskDay) {
+    override fun bind(info: TaskDay, adapterOnClickListener: View.OnClickListener?) {
         with(item){
+            task = info
+            localAdapterOnClickListener = adapterOnClickListener
+
             taskName.text = info.name
             run{
                 var timeString = if(info.time.hour<10){
@@ -28,15 +33,15 @@ class TaskDayViewHolder(
                 }
                 timeValue.text = timeString
             }
-            initTaskComplete(info.complete)
+            initTaskComplete()
 
             //TODO() taskSticker
         }
     }
 
-    private fun initTaskComplete(complete:Boolean){
+    private fun initTaskComplete(){
         with(item) {
-            if (complete) {
+            if (task.complete) {
                 prTaskCompleteClick = true
                 taskComplete.setImageResource(R.drawable.task_complite_ic)
             } else {
@@ -54,7 +59,17 @@ class TaskDayViewHolder(
                 if (prTaskCompleteClick) v.setImageResource(R.drawable.task_uncomplite_ic)
                 else v.setImageResource(R.drawable.task_complite_ic)
                 prTaskCompleteClick = !prTaskCompleteClick
-                //TODO сохранение статуса выполнения задания()
+                with(task){
+                    v.tag = TaskDay(
+                        id,
+                        day,
+                        name,
+                        time,
+                        sticker,
+                        prTaskCompleteClick
+                    )
+                    localAdapterOnClickListener?.onClick(v)
+                }
             }
         }
     }

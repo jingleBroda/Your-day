@@ -102,7 +102,7 @@ class MainMenuFragment : BaseFragment(R.layout.fragment_main_menu), View.OnClick
                 )
             }
 
-            taskDayAdapter = TaskDayAdapter(listOf())
+            taskDayAdapter = TaskDayAdapter(listOf(), this@MainMenuFragment)
             dayWeekAdapter = DayWeekAdapter(listOf())
             initTask()
             taskDayRecView.layoutManager = GridLayoutManager(requireActivity(),1)
@@ -242,6 +242,7 @@ class MainMenuFragment : BaseFragment(R.layout.fragment_main_menu), View.OnClick
         calendar.set(Calendar.HOUR_OF_DAY, newTask.time.hour)
         calendar.set(Calendar.MINUTE, newTask.time.minute)
         calendar.set(Calendar.SECOND, 0)
+        calendar.set(Calendar.MILLISECOND, 0)
         if(
             (Calendar.getInstance().timeInMillis < calendar.timeInMillis)&&
             (daySelectionHelper.getToday() == newTask.day)
@@ -271,7 +272,7 @@ class MainMenuFragment : BaseFragment(R.layout.fragment_main_menu), View.OnClick
                 }
                 requestCodeString += newTask.time.hour.toString() + newTask.time.minute.toString()
                 PendingIntent.getBroadcast(
-                    context,
+                    requireActivity().applicationContext,
                     requestCodeString.toInt(),
                     intent,
                     PendingIntent.FLAG_IMMUTABLE
@@ -288,20 +289,30 @@ class MainMenuFragment : BaseFragment(R.layout.fragment_main_menu), View.OnClick
 
     override fun onClick(v: View) {
         when(v.id){
-            R.id.addTaskButton->{ showCreateTaskDialogFragment() }
+            R.id.addTaskButton-> showCreateTaskDialogFragment()
 
-            R.id.switchUiButton->{ changeSwitchButton() }
+            R.id.switchUiButton-> changeSwitchButton()
 
-            R.id.deleteDbButton->{
-                viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
-                    viewModel.deleteAllTask()
-                    withContext(Dispatchers.Main){
-                        Toast.makeText(
-                            requireContext(),
-                            "Delete All Task!",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    }
+            R.id.deleteDbButton-> viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
+                viewModel.deleteAllTask()
+                withContext(Dispatchers.Main){
+                    Toast.makeText(
+                        requireContext(),
+                        "Delete All Task!",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+
+            R.id.taskComplete-> viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
+                val task = v.tag as TaskDay
+                viewModel.updateCompleteStatusTask(
+                    task.day,
+                    task.name,
+                    task.complete
+                )
+                withContext(Dispatchers.Main){
+                    initTask()
                 }
             }
         }

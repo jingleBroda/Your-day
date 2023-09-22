@@ -53,6 +53,7 @@ class CheckTomorrowTaskNotifyReceiver : DaggerBroadcastReceiver() {
         calendar.set(Calendar.HOUR_OF_DAY, task.time.hour)
         calendar.set(Calendar.MINUTE, task.time.minute)
         calendar.set(Calendar.SECOND, 0)
+        calendar.set(Calendar.MILLISECOND, 0)
 
         val massageHourNotify =
             if(task.time.hour < 10) "0${task.time.hour}" else "${task.time.hour}"
@@ -88,6 +89,7 @@ class CheckTomorrowTaskNotifyReceiver : DaggerBroadcastReceiver() {
             )
         }
 
+        // todo ПОМЕНЯЙ НА ALARM CLOCK
         (context.getSystemService(Context.ALARM_SERVICE) as AlarmManager).setExact(
             AlarmManager.RTC_WAKEUP,
             calendar.timeInMillis,

@@ -3,12 +3,14 @@ package com.example.presentation.main.fragment.mainFragment
 import androidx.lifecycle.ViewModel
 import com.example.domain.dataAbstract.useCase.DeleteAllTaskUseCase
 import com.example.domain.dataAbstract.useCase.GetWeekTaskUseCase
+import com.example.domain.dataAbstract.useCase.UpdateCompleteStatusTaskUseCase
 import com.example.domain.presentationModel.TaskDay
 import javax.inject.Inject
 
 class MainMenuViewModel @Inject constructor(
     private val getWeekTaskUseCase:GetWeekTaskUseCase,
     private val deleteAllTaskUseCase:DeleteAllTaskUseCase,
+    private val updateCompleteStatusTaskUseCase: UpdateCompleteStatusTaskUseCase
 ): ViewModel() {
 
     private var _weekTask = mutableMapOf<String, List<TaskDay>>()
@@ -24,6 +26,12 @@ class MainMenuViewModel @Inject constructor(
             _weekTask[day] = listTask
         }
     }
+
+    suspend fun updateCompleteStatusTask(
+        day:String,
+        name:String,
+        completeStatus:Boolean
+    ) = updateCompleteStatusTaskUseCase.invoke(day, name, completeStatus)
 
     suspend fun deleteAllTask(){
         _weekTask.clear()

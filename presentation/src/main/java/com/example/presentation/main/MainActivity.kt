@@ -34,26 +34,29 @@ class MainActivity : AppCompatActivity(), Navigator {
 
     private fun startTomorrowTaskAlarm(){
         val intent = Intent(this, CheckTomorrowTaskNotifyReceiver::class.java)
+        intent.flags = Intent.FLAG_RECEIVER_FOREGROUND
         var pendingIntent = PendingIntent.getBroadcast(
-            this,
+            applicationContext,
             0,
             intent,
-            PendingIntent.FLAG_NO_CREATE or PendingIntent.FLAG_IMMUTABLE
+            PendingIntent.FLAG_NO_CREATE or PendingIntent.FLAG_MUTABLE
         )
 
         if (pendingIntent == null) {
             Log.d("testRepeatAlarm", "Create")
             // PendingIntent не существует, нужно создать и запустить действие
             pendingIntent = PendingIntent.getBroadcast(
-                this,
+                applicationContext,
                 0,
                 intent,
-                PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_CANCEL_CURRENT
+                PendingIntent.FLAG_MUTABLE
             )
 
             val calendar = Calendar.getInstance()
-            calendar.set(Calendar.HOUR_OF_DAY, 23)
+            calendar.set(Calendar.HOUR_OF_DAY, 21)
             calendar.set(Calendar.MINUTE, 0)
+            calendar.set(Calendar.SECOND, 0)
+            calendar.set(Calendar.MILLISECOND, 0)
 
             alarmManager?.setRepeating(
                 AlarmManager.RTC_WAKEUP,
