@@ -1,7 +1,7 @@
 # Your day
 ## 👋
 
-![logo](logo_readme.png)
+![logo](readme\logo_readme.png)
 
 Hello! This application is designed to plan tasks for the day. Specify the date and time of the task and the application will not let you forget to complete it!
 ____
@@ -13,7 +13,7 @@ The application has 1 screen, but it has 2 viewing modes:
 
 There is also a dialog box for creating a task.
 
-![navigationYourDay](navigation.png)
+![navigationYourDay](readme\navigation.png)
 
 ____
 ## Instructions for use
