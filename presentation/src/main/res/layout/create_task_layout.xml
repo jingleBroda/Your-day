@@ -1,116 +1,144 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:background="@drawable/add_task_dialog_background">
+    android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/timeTaskString"
+    <ScrollView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:fontFamily="@font/gardens_cm_regular"
-        android:text="@string/reminder_time_string"
-        android:textColor="@color/white"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TimePicker
-        android:id="@+id/timePicker2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:timePickerMode="spinner"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/timeTaskString" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayoutNameTask"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/task_background"
-        android:padding="16dp"
-        app:hintTextColor="@color/grey"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/timePicker2">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/nameTaskInTextInputLayout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fontFamily="@font/gardens_cm_regular"
-            android:hint="@string/name_task"
-            android:singleLine="true"
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayoutDayTask"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/task_background"
-        android:padding="16dp"
-        app:hintTextColor="@color/grey"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutNameTask">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/dayTaskInTextInputLayout"
-            android:inputType="date"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fontFamily="@font/gardens_cm_regular"
-            android:hint="@string/day_task"
-            android:singleLine="true"
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <Button
-        android:id="@+id/addTaskDbAndCloseDialog"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:background="@drawable/add_task_dialog_background"
-        android:fontFamily="@font/gardens_cm_regular"
-        android:text="OK"
-        android:textColor="@color/white"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/textInputLayoutDayTask"
-        app:layout_constraintStart_toStartOf="@+id/textInputLayoutDayTask"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutDayTask" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <ProgressBar
-        android:id="@+id/createTaskProgress"
-        style="?android:attr/progressBarStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/textInputLayoutDayTask"
-        app:layout_constraintStart_toStartOf="@+id/textInputLayoutDayTask"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutDayTask" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/add_task_dialog_background">
 
+            <TextView
+                android:id="@+id/timeTaskString"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:fontFamily="@font/gardens_cm_regular"
+                android:text="@string/reminder_time_string"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TimePicker
+                android:id="@+id/timePicker2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:timePickerMode="spinner"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/timeTaskString" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayoutNameTask"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/task_background"
+                android:padding="16dp"
+                app:hintTextColor="@color/grey"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/timePicker2">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/nameTaskInTextInputLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/gardens_cm_regular"
+                    android:hint="@string/name_task"
+                    android:singleLine="true"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayoutDayTask"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/task_background"
+                android:padding="16dp"
+                app:hintTextColor="@color/grey"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/changeInputTypeDayTask">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/dayTaskInTextInputLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/gardens_cm_regular"
+                    android:hint="@string/day_task"
+                    android:inputType="date"
+                    android:singleLine="true"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/addTaskDbAndCloseDialog"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/add_task_dialog_background"
+                android:fontFamily="@font/gardens_cm_regular"
+                android:text="OK"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/textInputLayoutDayTask"
+                app:layout_constraintStart_toStartOf="@+id/textInputLayoutDayTask"
+                app:layout_constraintTop_toBottomOf="@+id/textInputLayoutDayTask" />
+
+            <ProgressBar
+                android:id="@+id/createTaskProgress"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/textInputLayoutDayTask"
+                app:layout_constraintStart_toStartOf="@+id/textInputLayoutDayTask"
+                app:layout_constraintTop_toBottomOf="@+id/textInputLayoutDayTask" />
+
+            <CheckBox
+                android:id="@+id/changeInputTypeDayTask"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:buttonTint="@color/white"
+                android:fontFamily="@font/gardens_cm_regular"
+                android:text="@string/change_input_type_day_format_string"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/textInputLayoutNameTask"
+                app:layout_constraintStart_toStartOf="@+id/textInputLayoutNameTask"
+                app:layout_constraintTop_toBottomOf="@+id/textInputLayoutNameTask" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

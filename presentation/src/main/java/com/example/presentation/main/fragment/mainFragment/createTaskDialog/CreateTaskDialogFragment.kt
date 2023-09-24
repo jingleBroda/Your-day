@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -48,6 +49,14 @@ class CreateTaskDialogFragment(
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         with(binding){
+            changeInputTypeDayTask.setOnCheckedChangeListener{ btnV, isChecked->
+                if(isChecked){
+                    dayTaskInTextInputLayout.inputType = EditorInfo.TYPE_TEXT_VARIATION_NORMAL
+                }
+                else{
+                    dayTaskInTextInputLayout.inputType = EditorInfo.TYPE_DATETIME_VARIATION_DATE
+                }
+            }
             addTaskDbAndCloseDialog.setOnClickListener(this@CreateTaskDialogFragment)
             timePicker2.setIs24HourView(true)
         }

@@ -24,4 +24,5 @@
     <string name="empty_name_task_error_string">Поле имени не должно быть пустым!</string>
     <string name="duplicate_task_error">Ошибка! На указанное время уже есть задача!</string>
     <string name="notify_title_string">Время выполнять задачу!</string>
+    <string name="change_input_type_day_format_string">установить тип ввода «текст» в поле ввода дня</string>
 </resources>
