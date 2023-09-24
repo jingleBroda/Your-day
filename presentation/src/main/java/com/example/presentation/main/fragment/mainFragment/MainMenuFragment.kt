@@ -1,6 +1,7 @@
 package com.example.presentation.main.fragment.mainFragment
 
 import android.app.AlarmManager
+import android.app.AlarmManager.AlarmClockInfo
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
@@ -15,7 +16,7 @@ import com.example.domain.presentationModel.DayWeek
 import com.example.domain.presentationModel.TaskDay
 import com.example.presentation.R
 import com.example.presentation.databinding.FragmentMainMenuBinding
-import com.example.presentation.main.alarm.TaskNotifyReceiver
+import com.example.presentation.main.receiver.TaskNotifyReceiver
 import com.example.presentation.main.fragment.mainFragment.createTaskDialog.CreateTaskDialogFragment
 import com.example.presentation.main.fragment.mainFragment.mainFragmentUtils.DaySelectionHelper
 import com.example.presentation.main.fragment.mainFragment.mainFragmentUtils.recViewUtils.dayWeekRecView.DayWeekAdapter
@@ -160,14 +161,11 @@ class MainMenuFragment : BaseFragment(R.layout.fragment_main_menu), View.OnClick
 
     private fun changeSwitchButton(){
         with(binding){
-            //проверяем, какой вид отображения нужно показать (при true показываем вид недели, при else показываем конкретный день)
             if(switchButtonMode){
                 //режим ресайклера ПО ВСЕЙ НЕДЕЛЕ СРАЗУ
-                //изменяем вид кнопки
                 switchUiButton.switchUiIc.setImageResource(R.drawable.day_vector)
                 switchUiButton.switchUiText.text = getString(R.string.day_string)
                 with(daySelection){
-                    //меняем вид верхней панели управления показа дней
                     listDayLayout.visibility = View.GONE
                     timeInterval.visibility = View.VISIBLE
 
@@ -185,11 +183,9 @@ class MainMenuFragment : BaseFragment(R.layout.fragment_main_menu), View.OnClick
             }
             else{
                 //режим ресайклера ПО 1 ДНЮ
-                //изменяем вид кнопки
                 switchUiButton.switchUiIc.setImageResource(R.drawable.week_vector)
                 switchUiButton.switchUiText.text = getString(R.string.week_string)
                 with(daySelection){
-                    //меняем вид верхней панели управления показа дней
                     listDayLayout.visibility = View.VISIBLE
                     timeInterval.visibility = View.GONE
 
@@ -257,7 +253,6 @@ class MainMenuFragment : BaseFragment(R.layout.fragment_main_menu), View.OnClick
                     "${newTask.name} ${massageHourNotify}:${massageMinNotify}"
                 )
 
-                //формируем requestCode
                 var requestCodeString = ""
                 run{
                     var dotCount = 0
@@ -279,9 +274,9 @@ class MainMenuFragment : BaseFragment(R.layout.fragment_main_menu), View.OnClick
                 )
             }
 
-            alarmManager?.setExact(
-                AlarmManager.RTC_WAKEUP,
-                calendar.timeInMillis,
+            val alarmClockInfo = AlarmClockInfo(calendar.timeInMillis, null)
+            alarmManager?.setAlarmClock(
+                alarmClockInfo,
                 alarmIntent
             )
         }

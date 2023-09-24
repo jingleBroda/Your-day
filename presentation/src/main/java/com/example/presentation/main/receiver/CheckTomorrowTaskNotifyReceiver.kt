@@ -1,4 +1,4 @@
-package com.example.presentation.main.alarm
+package com.example.presentation.main.receiver
 
 import android.app.AlarmManager
 import android.app.PendingIntent
@@ -89,10 +89,9 @@ class CheckTomorrowTaskNotifyReceiver : DaggerBroadcastReceiver() {
             )
         }
 
-        // todo ПОМЕНЯЙ НА ALARM CLOCK
-        (context.getSystemService(Context.ALARM_SERVICE) as AlarmManager).setExact(
-            AlarmManager.RTC_WAKEUP,
-            calendar.timeInMillis,
+        val alarmClockInfo = AlarmManager.AlarmClockInfo(calendar.timeInMillis, null)
+        (context.getSystemService(Context.ALARM_SERVICE) as AlarmManager).setAlarmClock(
+            alarmClockInfo,
             alarmIntent
         )
     }

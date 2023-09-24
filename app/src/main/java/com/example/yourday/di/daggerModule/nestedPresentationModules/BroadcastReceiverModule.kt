@@ -1,6 +1,6 @@
 package com.example.yourday.di.daggerModule.nestedPresentationModules
 
-import com.example.presentation.main.alarm.CheckTomorrowTaskNotifyReceiver
+import com.example.presentation.main.receiver.CheckTomorrowTaskNotifyReceiver
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 

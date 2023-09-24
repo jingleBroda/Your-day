@@ -9,14 +9,5 @@
         android:id="@+id/mainMenuFragment"
         android:name="com.example.presentation.main.fragment.mainFragment.MainMenuFragment"
         android:label="fragment_main_menu"
-        tools:layout="@layout/fragment_main_menu" >
-        <action
-            android:id="@+id/action_mainMenuFragment_to_selectedDayFragment"
-            app:destination="@id/selectedDayFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/selectedDayFragment"
-        android:name="com.example.presentation.main.fragment.SelectedDayFragment"
-        android:label="fragment_selected_day"
-        tools:layout="@layout/fragment_selected_day" />
+        tools:layout="@layout/fragment_main_menu" />
 </navigation>

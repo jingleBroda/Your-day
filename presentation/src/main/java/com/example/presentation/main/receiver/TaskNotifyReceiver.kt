@@ -1,4 +1,4 @@
-package com.example.presentation.main.alarm
+package com.example.presentation.main.receiver
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
@@ -6,7 +6,6 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import androidx.core.app.NotificationCompat
-import androidx.core.content.getSystemService
 import com.example.presentation.R
 
 class TaskNotifyReceiver : BroadcastReceiver() {

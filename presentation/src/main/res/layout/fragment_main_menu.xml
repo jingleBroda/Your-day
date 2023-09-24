@@ -80,7 +80,8 @@
             layout="@layout/tmp_delete_db"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:visibility="gone" />
 
         <include
             android:id="@+id/addTaskButton"

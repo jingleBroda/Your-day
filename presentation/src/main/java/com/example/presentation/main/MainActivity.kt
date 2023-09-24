@@ -13,15 +13,16 @@ import androidx.navigation.fragment.NavHostFragment
 import com.example.presentation.R
 import com.example.presentation.databinding.ActivityMainBinding
 import com.example.presentation.main.activityContract.Navigator
-import com.example.presentation.main.alarm.CheckTomorrowTaskNotifyReceiver
+import com.example.presentation.main.receiver.CheckTomorrowTaskNotifyReceiver
 import java.util.Calendar
 
-class MainActivity : AppCompatActivity(), Navigator {
+class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var navController:NavController
     private var alarmManager:AlarmManager? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        setTheme(R.style.Base_Theme_YourDay)
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater).also { setContentView(it.root) }
         val navHost = supportFragmentManager.findFragmentById(
@@ -32,7 +33,7 @@ class MainActivity : AppCompatActivity(), Navigator {
         startTomorrowTaskAlarm()
     }
 
-    private fun startTomorrowTaskAlarm(){
+    private fun startTomorrowTaskAlarm() {
         val intent = Intent(this, CheckTomorrowTaskNotifyReceiver::class.java)
         intent.flags = Intent.FLAG_RECEIVER_FOREGROUND
         var pendingIntent = PendingIntent.getBroadcast(
@@ -64,17 +65,8 @@ class MainActivity : AppCompatActivity(), Navigator {
                 AlarmManager.INTERVAL_DAY,
                 pendingIntent
             )
-        }
-        else{
+        } else {
             Log.d("testRepeatAlarm", "NotCreate")
         }
-    }
-
-    override fun next(fragment: Fragment, arg: Bundle?) {
-        TODO("Not yet implemented")
-    }
-
-    override fun back() {
-        TODO("Not yet implemented")
     }
 }

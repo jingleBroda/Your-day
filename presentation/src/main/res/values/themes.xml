@@ -8,4 +8,8 @@
     <style name="CustomTextView" parent="Widget.AppCompat.TextView">
         <item name="fontFamily">@font/gardens_cm_regular </item>
     </style>
+
+    <style name="SplashScreen" parent="Theme.MaterialComponents.NoActionBar">
+        <item name="android:windowBackground">@drawable/splash_screen</item>
+    </style>
 </resources>

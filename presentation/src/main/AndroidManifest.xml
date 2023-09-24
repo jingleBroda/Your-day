@@ -5,12 +5,12 @@
 
     <application>
         <receiver
-            android:name=".main.alarm.CheckTomorrowTaskNotifyReceiver"
+            android:name=".main.receiver.CheckTomorrowTaskNotifyReceiver"
             android:enabled="true"
             android:exported="true" />
 
         <receiver
-            android:name=".main.alarm.TaskNotifyReceiver"
+            android:name=".main.receiver.TaskNotifyReceiver"
             android:enabled="true"
             android:exported="true" />
     </application>
